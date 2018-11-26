@@ -1,4 +1,6 @@
-Rspec.describe 'Todos API', type: :request do
+require 'rails_helper'
+
+RSpec.describe 'Todos API', type: :request do
     # initialize test data
     let!(:todos){ create_list(:todo,10)}
     let(:todo_id){todos.first.id}
@@ -6,7 +8,7 @@ Rspec.describe 'Todos API', type: :request do
     # Test suites for GET /todos
     describe 'GET /todos' do
         # make HTTP get request before each example
-        before {get '/todos'}
+        before { get '/todos'}
 
         it 'returns todos' do
             # Note 'json' is a custome helper to parse JSON responses
@@ -31,7 +33,7 @@ Rspec.describe 'Todos API', type: :request do
             end
 
             it 'returns status code 200' do
-                expect(response). to have_http_status(200)
+                expect(response).to have_http_status(200)
             end
         end
 
@@ -64,7 +66,7 @@ Rspec.describe 'Todos API', type: :request do
             end
 
             it 'returns status code 201' do
-                expect(response) to have_http_status(201)
+                expect(response).to have_http_status(201)
             end
         end
 
@@ -72,7 +74,7 @@ Rspec.describe 'Todos API', type: :request do
             before {post '/todos', params: {title: 'Foobar'}}
 
             it 'returns status code 422' do
-                expect(response). to have_http_status(422)
+                expect(response).to have_http_status(422)
             end
 
             it 'returns a validation faliure message' do
