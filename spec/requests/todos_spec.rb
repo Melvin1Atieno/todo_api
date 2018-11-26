@@ -11,8 +11,8 @@ RSpec.describe 'Todos API', type: :request do
         before { get '/todos'}
 
         it 'returns todos' do
-            # Note 'json' is a custome helper to parse JSON responses
-            expect(json).not_to_be_empty
+            # A custom helper to parse JSON responses
+            expect(json).not_to be_empty
             expect(json.size).to eq(10)
         end
 
@@ -24,11 +24,11 @@ RSpec.describe 'Todos API', type: :request do
 
     # Test suites for GET /todos/ :id
     describe 'GET /todos/:id' do
-        before {get "/todos/#{todo_id}"}
+        before { get "/todos/#{todo_id}"}
 
         context 'when the record exists' do
             it 'returns the todo' do
-                expect(json).not_to_be_empty
+                expect(json).not_to be_empty
                 expect(json['id']).to eq(todo_id)
             end
 
@@ -46,7 +46,7 @@ RSpec.describe 'Todos API', type: :request do
             end
 
             it 'returns a not found message' do
-                expect(response.body).to match(/couldn't find Todo/)
+                expect(response.body).to match(/Couldn't find Todo/)
             end
         end
     end
@@ -55,14 +55,14 @@ RSpec.describe 'Todos API', type: :request do
 
     describe 'POST/todos' do
         # valid payload
-        let(:valid_attributes){{title: 'Learn Elm', created_by: '1'}}
+        let(:valid_attributes) { { title: 'Learn Elm', created_by: '1'}}
 
         context 'when the request is valid' do
             before {post '/todos', params: valid_attributes}
 
 
             it 'creates a todo' do
-                expect(json['title'].to eq('Learn Elm '))
+                expect(json['title']).to eq('Learn Elm')
             end
 
             it 'returns status code 201' do
@@ -78,8 +78,7 @@ RSpec.describe 'Todos API', type: :request do
             end
 
             it 'returns a validation faliure message' do
-                expect(response.body)
-                    to match(/Validation failed: Created by can't be blank/)
+                expect(response.body).to match(/Validation failed: Created by can't be blank/)
             end
         end
     end
@@ -93,7 +92,7 @@ RSpec.describe 'Todos API', type: :request do
 
 
             it 'updates the record' do
-                expects(response.body).to be_empty 
+                expect(response.body).to be_empty 
             end
 
             it 'returns status code 204' do
