@@ -1,6 +1,7 @@
 require 'rails_helper'
+require 'acceptance_helper'
 
-RSpec.describe 'Todos API', type: :request do
+RSpec.describe 'Todos API', type: :request, acceptance:true do
     # initialize test data
     let!(:todos){ create_list(:todo,10)}
     let(:todo_id){todos.first.id}
