@@ -9,10 +9,8 @@ branches:
 
 install:
   - gem install bundler
-  - gem install rails
-
-after_install:
   - bundle install
 
 script:
+  - bundle exec rake db:setup
   - bundle exec rspec
