@@ -10,3 +10,12 @@ install:
 script:
   - bundle exec rake db:setup
   - bundle exec rspec
+
+deploy:
+  provider: heroku
+  api_key: $HEROKU
+  app: my-todos-api
+  run: 
+    - "rake db:setup"
+    - "rake db:migrate"
+
