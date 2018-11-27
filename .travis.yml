@@ -2,11 +2,7 @@ language: ruby
 
 rvm: 
   -2.5.1
-
-branches:
-  only:
-    -master
-
+  
 install:
   - gem install bundler
   - bundle install
