@@ -1,0 +1,18 @@
+language: ruby
+
+rvm: 
+  -2.5.1
+
+branches:
+  only:
+    -master
+
+install:
+  - gem install bundler
+  - gem install rails
+
+after_install:
+  - bundle install
+
+script:
+  - bundle exec rspec
