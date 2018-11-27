@@ -1,18 +1,21 @@
 language: ruby
 
 rvm: 
-  -2.5.1
-
-branches:
-  only:
-    -master
+  - 2.5.1
 
 install:
   - gem install bundler
-  - gem install rails
-
-after_install:
   - bundle install
 
 script:
+  - bundle exec rake db:setup
   - bundle exec rspec
+
+deploy:
+  provider: heroku
+  api_key: $HEROKU
+  app: my-todos-api
+  run: 
+    - "rake db:setup"
+    - "rake db:migrate"
+
