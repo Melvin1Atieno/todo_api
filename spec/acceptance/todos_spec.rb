@@ -1,17 +1,18 @@
 require 'rails_helper'
 require 'acceptance_helper'
 
-RSpec.describe 'Todos API', type: :request, acceptance:true do
+RSpec.describe 'Todos API', type: :request do
     # initialize test data
     let!(:todos){ create_list(:todo,10)}
     let(:todo_id){todos.first.id}
 
     # Test suites for GET /todos
     describe 'GET /todos' do
+        
         # make HTTP get request before each example
         before { get '/todos'}
 
-        it 'returns todos' do
+        it 'returns a list of todos' do
             # A custom helper to parse JSON responses
             expect(json).not_to be_empty
             expect(json.size).to eq(10)
