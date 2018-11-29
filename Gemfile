@@ -11,6 +11,9 @@ gem 'pg', '~> 0.18.4'
 gem 'puma', '~> 3.11'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'diff-lcs', '~> 1.3'
+gem 'bcrypt', '~> 3.1.7'
+
+gem 'jwt'
 
 # documentation
 gem 'rspec_api_documentation'
